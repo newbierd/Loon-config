@@ -1,0 +1,117 @@
+# Loon 手动配置 - 此配置文件需要你手动选择所需的代理服务器，若出现故障不会自动切换，必须手动干预选择可用的替代服务器。
+# Date: 2025-11-08 00:21:37
+# Author: https://t.me/iKeLee
+# 更多插件可前往 https://hub.kelee.one 安装
+
+[General]
+ip-mode=v4-only
+ipv6-vif=off
+dns-server=system
+sni-sniffing=true
+disable-stun=true
+dns-reject-mode=LoopbackIP
+domain-reject-mode=DNS
+udp-fallback-mode=REJECT
+wifi-access-http-port=7222
+wifi-access-socks5-port=7221
+allow-wifi-access=false
+interface-mode=auto
+test-timeout=5
+disconnect-on-policy-change=false
+internet-test-url=http://connectivitycheck.platform.hicloud.com/generate_204
+proxy-test-url=http://www.gstatic.com/generate_204
+resource-parser=https://raw.githubusercontent.com/sub-store-org/Sub-Store/release/sub-store-parser.loon.min.js
+geoip-url=https://geodata.kelee.one/Country-Masaiki.mmdb
+ipasn-url=https://geodata.kelee.one/GeoLite2-ASN-P3TERX.mmdb
+skip-proxy=192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, localhost, *.local, e.crashlynatics.com
+bypass-tun=10.0.0.0/8, 100.64.0.0/10, 127.0.0.0/8, 169.254.0.0/16, 172.16.0.0/12, 192.0.0.0/24, 192.0.2.0/24, 192.88.99.0/24, 192.168.0.0/16, 198.51.100.0/24, 203.0.113.0/24, 224.0.0.0/4, 255.255.255.255/32
+
+[Proxy]
+
+[Remote Proxy]
+
+[Remote Filter]
+
+[Proxy Group]
+🚀 手动选择 = select, filter:.*, Loon, DIRECT
+♻️ 全局测速 = url-test, filter:.*, Loon, url = http://www.gstatic.com/generate_204, interval = 600
+
+亚太节点 = url-test, filter:.*(香港|HK|台湾|TW|日本|JP|韩国|KR|新加坡|SG|马来西亚|MY|泰国|TH).*?, Loon, url = http://www.gstatic.com/generate_204, interval = 600
+美国节点 = url-test, filter:.*(美国|US).*?, Loon, url = http://www.gstatic.com/generate_204, interval = 600
+欧洲节点 = url-test, filter:.*(英国|GB|德国|DE|法国|FR|荷兰|NL|奥地利|AT|俄罗斯|RU|欧洲).*?, Loon, url = http://www.gstatic.com/generate_204, interval = 600
+其他节点 = url-test, filter:.*(尼日利亚|NG|土耳其|TR|阿根廷|AR|印度|IN|巴西|BR).*?, Loon, url = http://www.gstatic.com/generate_204, interval = 600
+
+AI = select, filter:.*(美国|US|日本|JP).*?, Loon
+Crypto = select, filter:^(?!.*(美国|US|us)).*, Loon
+Tiktok = select, filter:.*(美国|US).*?, Loon
+Meta = select, filter:.*(美国|US).*?, Loon
+Paypal = select, filter:.*(美国|US|英国|GB|德国|DE).*?, Loon
+
+Google = select, 美国节点, 亚太节点, 🚀 手动选择
+Apple = select, DIRECT, 🚀 手动选择, 亚太节点
+Microsoft = select, DIRECT, 🚀 手动选择, 美国节点
+Telegram = select, 亚太节点, 美国节点, 🚀 手动选择
+Youtube = select, 亚太节点, 美国节点, 🚀 手动选择
+Twitter = select, 亚太节点, 美国节点, 🚀 手动选择
+GlobalMedia = select, 亚太节点, 美国节点, 其他节点, 🚀 手动选择
+Game = select, ♻️ 全局测速, 亚太节点, 美国节点
+End = select, 🚀 手动选择, DIRECT
+
+[Rule]
+# 当配置文件中没有任何有效策略组时，Loon将使用内置的PROXY策略组
+# 当配置文件中存在有效的策略组时，内置的PROXY策略组将不再允许被调用，仅可使用用户配置的策略组
+# 配置文件已自带远程GEOIP, cn, DIRECT规则，请勿在此添加
+# 请勿修改远程CN REGION规则的排序甚至删除
+FINAL, End
+
+[Remote Rule]
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/PayPal/PayPal.list, policy=Paypal, tag=PayPal, enabled=true
+
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Crypto/Crypto.list, policy=Crypto, tag=Crypto, enabled=true
+
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/TikTok/TikTok.list, policy=Tiktok, tag=TikTok, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Telegram/Telegram.list, policy=Telegram, tag=Telegram, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Twitter/Twitter.list, policy=Twitter, tag=Twitter, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Facebook/Facebook.list, policy=Meta, tag=Facebook, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Instagram/Instagram.list, policy=Meta, tag=Instagram, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Whatsapp/Whatsapp.list, policy=Meta, tag=Whatsapp, enabled=true
+
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Anthropic/Anthropic.list, policy=AI, tag=Anthropic, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/OpenAI/OpenAI.list, policy=AI, tag=OpenAI, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Claude/Claude.list, policy=AI, tag=Claude, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Gemini/Gemini.list, policy=AI, tag=Gemini, enabled=true
+
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/YouTube/YouTube.list, policy=Youtube, tag=YouTube, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/GlobalMedia/GlobalMedia.list, policy=GlobalMedia, tag=GlobalMedia, enabled=true
+
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Google/Google.list, policy=Google, tag=Google, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Apple/Apple.list, policy=Apple, tag=Apple, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Microsoft/Microsoft.list, policy=Microsoft, tag=Microsoft, enabled=true
+
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/ChinaMax/ChinaMax.list, policy=DIRECT, tag=Direct, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Lan/Lan.list, policy=DIRECT, tag=Local, enabled=true
+
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Proxy/Proxy.list, policy=🚀 手动选择, tag=Proxy, enabled=true
+
+[Host]
+
+[Rewrite]
+
+[Script]
+
+[Plugin]
+https://kelee.one/Tool/Loon/Lpx/Block_HTTPDNS.lpx, pin=true, enabled=true
+https://kelee.one/Tool/Loon/Lpx/BlockAdvertisers.lpx, pin=true, enabled=true
+https://kelee.one/Tool/Loon/Lpx/QuickSearch.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Prevent_DNS_Leaks.lpx, policy=🚀 手动选择, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Node_detection_tool.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/TestFlightRegionUnlock.lpx, policy=DIRECT, enabled=false
+https://kelee.one/Tool/Loon/Lpx/BoxJs.lpx, policy=🚀 手动选择, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Sub-Store.lpx, policy=🚀 手动选择, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Script-Hub.lpx, policy=🚀 手动选择, enabled=true
+
+[Mitm]
+hostname=
+ca-p12=
+ca-passphrase=
+skip-server-cert-verify=false
