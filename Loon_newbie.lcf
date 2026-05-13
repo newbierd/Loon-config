@@ -2,6 +2,11 @@
 # Date: 2025-11-08 00:21:37
 # Author: https://t.me/iKeLee
 # 更多插件可前往 https://hub.kelee.one 安装
+#
+# 修改说明：
+# 适用于「Sub-Store 节点订阅单独导入 Loon + GitHub 托管配置文件」的使用方式。
+# 仅将原来的 filter:..., Loon 判断逻辑改为 [Remote Filter] 方式。
+# 不修改原有策略组名称、分组结构、分流规则和插件配置。
 
 [General]
 ip-mode=v4-only
@@ -31,21 +36,33 @@ bypass-tun=10.0.0.0/8, 100.64.0.0/10, 127.0.0.0/8, 169.254.0.0/16, 172.16.0.0/12
 [Remote Proxy]
 
 [Remote Filter]
+筛选_全部节点 = NameRegex, FilterKey = ".*"
+
+筛选_亚太节点 = NameRegex, FilterKey = ".*(香港|HK|台湾|TW|日本|JP|韩国|KR|新加坡|SG|马来西亚|MY|泰国|TH).*?"
+筛选_美国节点 = NameRegex, FilterKey = ".*(美国|US).*?"
+筛选_欧洲节点 = NameRegex, FilterKey = ".*(英国|GB|德国|DE|法国|FR|荷兰|NL|奥地利|AT|俄罗斯|RU|欧洲).*?"
+筛选_其他节点 = NameRegex, FilterKey = ".*(尼日利亚|NG|土耳其|TR|阿根廷|AR|印度|IN|巴西|BR).*?"
+
+筛选_AI = NameRegex, FilterKey = ".*(美国|US|日本|JP).*?"
+筛选_Crypto = NameRegex, FilterKey = "^(?!.*(美国|US|us)).*"
+筛选_Tiktok = NameRegex, FilterKey = ".*(美国|US).*?"
+筛选_Meta = NameRegex, FilterKey = ".*(美国|US).*?"
+筛选_Paypal = NameRegex, FilterKey = ".*(美国|US|英国|GB|德国|DE).*?"
 
 [Proxy Group]
-🚀 手动选择 = select, filter:.*, Loon, DIRECT
-♻️ 全局测速 = url-test, filter:.*, Loon, url = http://www.gstatic.com/generate_204, interval = 600
+🚀 手动选择 = select, 筛选_全部节点, DIRECT
+♻️ 全局测速 = url-test, 筛选_全部节点, url = http://www.gstatic.com/generate_204, interval = 600
 
-亚太节点 = url-test, filter:.*(香港|HK|台湾|TW|日本|JP|韩国|KR|新加坡|SG|马来西亚|MY|泰国|TH).*?, Loon, url = http://www.gstatic.com/generate_204, interval = 600
-美国节点 = url-test, filter:.*(美国|US).*?, Loon, url = http://www.gstatic.com/generate_204, interval = 600
-欧洲节点 = url-test, filter:.*(英国|GB|德国|DE|法国|FR|荷兰|NL|奥地利|AT|俄罗斯|RU|欧洲).*?, Loon, url = http://www.gstatic.com/generate_204, interval = 600
-其他节点 = url-test, filter:.*(尼日利亚|NG|土耳其|TR|阿根廷|AR|印度|IN|巴西|BR).*?, Loon, url = http://www.gstatic.com/generate_204, interval = 600
+亚太节点 = url-test, 筛选_亚太节点, url = http://www.gstatic.com/generate_204, interval = 600
+美国节点 = url-test, 筛选_美国节点, url = http://www.gstatic.com/generate_204, interval = 600
+欧洲节点 = url-test, 筛选_欧洲节点, url = http://www.gstatic.com/generate_204, interval = 600
+其他节点 = url-test, 筛选_其他节点, url = http://www.gstatic.com/generate_204, interval = 600
 
-AI = select, filter:.*(美国|US|日本|JP).*?, Loon
-Crypto = select, filter:^(?!.*(美国|US|us)).*, Loon
-Tiktok = select, filter:.*(美国|US).*?, Loon
-Meta = select, filter:.*(美国|US).*?, Loon
-Paypal = select, filter:.*(美国|US|英国|GB|德国|DE).*?, Loon
+AI = select, 筛选_AI
+Crypto = select, 筛选_Crypto
+Tiktok = select, 筛选_Tiktok
+Meta = select, 筛选_Meta
+Paypal = select, 筛选_Paypal
 
 Google = select, 美国节点, 亚太节点, 🚀 手动选择
 Apple = select, DIRECT, 🚀 手动选择, 亚太节点
