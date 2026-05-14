@@ -38,6 +38,7 @@ bypass-tun=10.0.0.0/8, 100.64.0.0/10, 127.0.0.0/8, 169.254.0.0/16, 172.16.0.0/12
 [Remote Filter]
 筛选_全部节点 = NameRegex, FilterKey = ".*"
 筛选_直连 = NameRegex, FilterKey = '.*(直连).*?'
+筛选_中转 = NameRegex, FilterKey = '.*(中转).*?'
 筛选_落地 = NameRegex, FilterKey = '.*(落地).*?'
 
 筛选_AI = NameRegex, FilterKey = ".*(美国|US|日本|JP).*?"
@@ -49,6 +50,9 @@ bypass-tun=10.0.0.0/8, 100.64.0.0/10, 127.0.0.0/8, 169.254.0.0/16, 172.16.0.0/12
 [Proxy Group]
 🚀 手动选择 = select, 筛选_全部节点, DIRECT
 ♻️ 全局测速 = url-test, 筛选_全部节点, url = http://www.gstatic.com/generate_204, interval = 600
+直连 = select, 筛选_直连
+中转 = select, 筛选_中转
+落地 = select, 筛选_落地
 
 AI = select, 筛选_AI
 Crypto = select, 筛选_Crypto
@@ -56,14 +60,14 @@ Tiktok = select, 筛选_Tiktok
 Meta = select, 筛选_Meta
 Paypal = select, 筛选_Paypal
 
-Google = select, 🚀 手动选择, 筛选_全部节点
-Apple = select, DIRECT, 🚀 手动选择
-Microsoft = select, DIRECT, 🚀 手动选择
-Telegram = select, 🚀 手动选择, ♻️ 全局测速
-Youtube = select, 🚀 手动选择
-SocailMedia = select, 🚀 手动选择
-GlobalMedia = select, 🚀 手动选择
-Game = select, ♻️ 全局测速
+Google = select, 🚀 手动选择, 直连, 中转
+Apple = select, DIRECT, 🚀 手动选择, 直连, 中转, 落地
+Microsoft = select, 🚀 手动选择, 直连, 中转, 落地
+Telegram = select, 🚀 手动选择, ♻️ 全局测速, 直连, 中转
+Youtube = select, 🚀 手动选择, 直连, 中转, 落地
+SocailMedia = select, 🚀 手动选择, 直连, 中转, 落地
+GlobalMedia = select, 🚀 手动选择, 直连, 中转
+Game = select, 🚀 手动选择, ♻️ 全局测速, 直连
 End = select, 🚀 手动选择, DIRECT
 
 [Rule]
