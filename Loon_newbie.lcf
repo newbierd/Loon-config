@@ -37,11 +37,8 @@ bypass-tun=10.0.0.0/8, 100.64.0.0/10, 127.0.0.0/8, 169.254.0.0/16, 172.16.0.0/12
 
 [Remote Filter]
 筛选_全部节点 = NameRegex, FilterKey = ".*"
-
-筛选_亚太节点 = NameRegex, FilterKey = ".*(香港|HK|台湾|TW|日本|JP|韩国|KR|新加坡|SG|马来西亚|MY|泰国|TH).*?"
-筛选_美国节点 = NameRegex, FilterKey = ".*(美国|US).*?"
-筛选_欧洲节点 = NameRegex, FilterKey = ".*(英国|GB|德国|DE|法国|FR|荷兰|NL|奥地利|AT|俄罗斯|RU|欧洲).*?"
-筛选_其他节点 = NameRegex, FilterKey = ".*(尼日利亚|NG|土耳其|TR|阿根廷|AR|印度|IN|巴西|BR).*?"
+筛选_直连 = NameRegex, FilterKey = '.*(直连).*?'
+筛选_直连 = NameRegex, FilterKey = '.*(落地).*?'
 
 筛选_AI = NameRegex, FilterKey = ".*(美国|US|日本|JP).*?"
 筛选_Crypto = NameRegex, FilterKey = "^(?!.*(美国|US|us)).*"
@@ -53,25 +50,20 @@ bypass-tun=10.0.0.0/8, 100.64.0.0/10, 127.0.0.0/8, 169.254.0.0/16, 172.16.0.0/12
 🚀 手动选择 = select, 筛选_全部节点, DIRECT
 ♻️ 全局测速 = url-test, 筛选_全部节点, url = http://www.gstatic.com/generate_204, interval = 600
 
-亚太节点 = url-test, 筛选_亚太节点, url = http://www.gstatic.com/generate_204, interval = 600
-美国节点 = url-test, 筛选_美国节点, url = http://www.gstatic.com/generate_204, interval = 600
-欧洲节点 = url-test, 筛选_欧洲节点, url = http://www.gstatic.com/generate_204, interval = 600
-其他节点 = url-test, 筛选_其他节点, url = http://www.gstatic.com/generate_204, interval = 600
-
 AI = select, 筛选_AI
 Crypto = select, 筛选_Crypto
 Tiktok = select, 筛选_Tiktok
 Meta = select, 筛选_Meta
 Paypal = select, 筛选_Paypal
 
-Google = select, 美国节点, 亚太节点, 🚀 手动选择
-Apple = select, DIRECT, 🚀 手动选择, 亚太节点
-Microsoft = select, DIRECT, 🚀 手动选择, 美国节点
-Telegram = select, 亚太节点, 美国节点, 🚀 手动选择
-Youtube = select, 亚太节点, 美国节点, 🚀 手动选择
-Twitter = select, 亚太节点, 美国节点, 🚀 手动选择
-GlobalMedia = select, 亚太节点, 美国节点, 其他节点, 🚀 手动选择
-Game = select, ♻️ 全局测速, 亚太节点, 美国节点
+Google = select, 🚀 手动选择
+Apple = select, DIRECT, 🚀 手动选择
+Microsoft = select, DIRECT, 🚀 手动选择
+Telegram = select, 🚀 手动选择, ♻️ 全局测速
+Youtube = select, 🚀 手动选择
+SocailMedia = select, 🚀 手动选择
+GlobalMedia = select, 🚀 手动选择
+Game = select, ♻️ 全局测速
 End = select, 🚀 手动选择, DIRECT
 
 [Rule]
@@ -88,7 +80,7 @@ https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/
 
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/TikTok/TikTok.list, policy=Tiktok, tag=TikTok, enabled=true
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Telegram/Telegram.list, policy=Telegram, tag=Telegram, enabled=true
-https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Twitter/Twitter.list, policy=Twitter, tag=Twitter, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Twitter/Twitter.list, policy=SocailMedia, tag=Twitter, enabled=true
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Facebook/Facebook.list, policy=Meta, tag=Facebook, enabled=true
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Instagram/Instagram.list, policy=Meta, tag=Instagram, enabled=true
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Whatsapp/Whatsapp.list, policy=Meta, tag=Whatsapp, enabled=true
