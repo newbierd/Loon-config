@@ -54,19 +54,18 @@ bypass-tun=10.0.0.0/8, 100.64.0.0/10, 127.0.0.0/8, 169.254.0.0/16, 172.16.0.0/12
 中转 = select, 筛选_中转
 落地 = select, 筛选_落地
 
-AI = select, 筛选_AI
+Google = select, 🚀 手动选择, 直连, 中转
+Telegram = select, 🚀 手动选择, ♻️ 全局测速, 直连, 中转
+Apple = select, DIRECT, 🚀 手动选择, 直连, 中转, 落地
 Crypto = select, 筛选_Crypto
+AI = select, 筛选_AI
 Tiktok = select, 筛选_Tiktok
 Meta = select, 筛选_Meta
 Paypal = select, 筛选_Paypal
-
-Google = select, 🚀 手动选择, 直连, 中转
-Apple = select, DIRECT, 🚀 手动选择, 直连, 中转, 落地
-Microsoft = select, 🚀 手动选择, 直连, 中转, 落地
-Telegram = select, 🚀 手动选择, ♻️ 全局测速, 直连, 中转
-Youtube = select, 🚀 手动选择, 直连, 中转, 落地
 SocailMedia = select, 🚀 手动选择, 直连, 中转, 落地
+Youtube = select, 🚀 手动选择, 直连, 中转, 落地
 GlobalMedia = select, 🚀 手动选择, 直连, 中转
+Microsoft = select, 🚀 手动选择, 直连, 中转, 落地
 Game = select, 🚀 手动选择, ♻️ 全局测速, 直连
 End = select, 🚀 手动选择, DIRECT
 
