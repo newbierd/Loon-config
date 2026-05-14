@@ -56,7 +56,7 @@ Tiktok = select, 筛选_Tiktok
 Meta = select, 筛选_Meta
 Paypal = select, 筛选_Paypal
 
-Google = select, 🚀 手动选择
+Google = select, 🚀 手动选择, 筛选_全部节点
 Apple = select, DIRECT, 🚀 手动选择
 Microsoft = select, DIRECT, 🚀 手动选择
 Telegram = select, 🚀 手动选择, ♻️ 全局测速
