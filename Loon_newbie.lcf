@@ -37,36 +37,32 @@ bypass-tun=10.0.0.0/8, 100.64.0.0/10, 127.0.0.0/8, 169.254.0.0/16, 172.16.0.0/12
 
 [Remote Filter]
 筛选_全部节点 = NameRegex, FilterKey = ".*"
-筛选_直连 = NameRegex, FilterKey = ".*(直连).*?"
-筛选_中转 = NameRegex, FilterKey = ".*(中转).*?"
+筛选_亚太 = NameRegex, FilterKey = ".*(美国|US).*?"
+筛选_美国 = NameRegex, FilterKey = ".*(香港|HK|日本|JP|台湾|TW|新加坡|SG|马来西亚|MY).*?"
 筛选_落地 = NameRegex, FilterKey = ".*(落地).*?"
 
 筛选_AI = NameRegex, FilterKey = ".*(美国|US|日本|JP).*?"
 筛选_Crypto = NameRegex, FilterKey = "^(?!.*(美国|US|us)).*"
-筛选_Tiktok = NameRegex, FilterKey = ".*(美国|US).*?"
-筛选_Meta = NameRegex, FilterKey = ".*(美国|US).*?"
 筛选_Paypal = NameRegex, FilterKey = ".*(美国|US|英国|GB|德国|DE).*?"
 
 [Proxy Group]
 🚀 手动选择 = select, 筛选_全部节点, DIRECT
-♻️ 全局测速 = url-test, 筛选_全部节点, url = http://www.gstatic.com/generate_204, interval = 600
-直连 = select, 筛选_直连
-中转 = select, 筛选_中转
+亚太节点 = select, 筛选_亚太
+美国节点 = select, 筛选_美国
 落地 = select, 筛选_落地
 
-Google = select, 🚀 手动选择, 直连, 中转
-Telegram = select, 🚀 手动选择, ♻️ 全局测速, 直连, 中转
-Apple = select, DIRECT, 🚀 手动选择, 直连, 中转, 落地
+Google = select, 美国节点, 亚太节点, 🚀 手动选择
+Telegram = select, 亚太节点, 美国节点, 🚀 手动选择
+Apple = select, DIRECT, 🚀 手动选择
 Crypto = select, 筛选_Crypto
 AI = select, 筛选_AI
-Tiktok = select, 筛选_Tiktok
-Meta = select, 筛选_Meta
-Paypal = select, 筛选_Paypal
-SocailMedia = select, 🚀 手动选择, 直连, 中转, 落地
-Youtube = select, 🚀 手动选择, 直连, 中转, 落地
-GlobalMedia = select, 🚀 手动选择, 直连, 中转
-Microsoft = select, 🚀 手动选择, 直连, 中转, 落地
-Game = select, 🚀 手动选择, ♻️ 全局测速, 直连
+Tiktok = select, 美国节点
+Meta = select, 美国节点
+Paypal = select, 美国节点
+Youtube = select, 美国节点, 亚太节点, 🚀 手动选择
+SocailMedia = select, 美国节点, 亚太节点, 🚀 手动选择
+GlobalMedia = select, 美国节点, 亚太节点, 🚀 手动选择
+Microsoft = select, 美国节点, 亚太节点, 🚀 手动选择
 End = select, 🚀 手动选择, DIRECT
 
 [Rule]
