@@ -37,8 +37,8 @@ bypass-tun=10.0.0.0/8, 100.64.0.0/10, 127.0.0.0/8, 169.254.0.0/16, 172.16.0.0/12
 
 [Remote Filter]
 筛选_全部节点 = NameRegex, FilterKey = ".*"
-筛选_亚太 = NameRegex, FilterKey = ".*(美国|US).*?"
-筛选_美国 = NameRegex, FilterKey = ".*(香港|HK|日本|JP|台湾|TW|新加坡|SG|马来西亚|MY).*?"
+筛选_亚太 = NameRegex, FilterKey = ".*(香港|HK|日本|JP|台湾|TW|新加坡|SG|马来西亚|MY).*?"
+筛选_美国 = NameRegex, FilterKey = ".*(美国|US).*?"
 筛选_落地 = NameRegex, FilterKey = ".*(落地).*?"
 
 筛选_AI = NameRegex, FilterKey = ".*(美国|US|日本|JP).*?"
